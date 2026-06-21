@@ -181,7 +181,7 @@ function requireRating(value) {
 }
 
 function publicAuthorName(user) {
-  return user.username || "LekkerDeal shopper";
+  return user.username || "LekkeDeal shopper";
 }
 
 function sanitizeStringList(value, maxLength) {

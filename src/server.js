@@ -13,11 +13,11 @@ async function main() {
   server.keepAliveTimeout = 5_000;
 
   server.listen(env.port, () => {
-    console.log(`LekkerDeal API listening on http://127.0.0.1:${env.port}`);
+    console.log(`LekkeDeal API listening on http://127.0.0.1:${env.port}`);
   });
 }
 
 main().catch((error) => {
-  console.error("LekkerDeal API failed to start", error);
+  console.error("LekkeDeal API failed to start", error);
   process.exit(1);
 });

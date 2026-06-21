@@ -35,12 +35,12 @@ function expiryMinutesForPurpose(purpose) {
 
 function messageForPurpose({ purpose, code, expiresInMinutes }) {
   if (purpose === OTP_PURPOSES.PASSWORD_RESET) {
-    return `LekkerDeal password reset code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
+    return `LekkeDeal password reset code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
   }
   if (purpose === OTP_PURPOSES.ACCOUNT_DELETION) {
-    return `LekkerDeal account deletion code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
+    return `LekkeDeal account deletion code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
   }
-  return `LekkerDeal registration code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
+  return `LekkeDeal registration code: ${code}. It expires in ${expiresInMinutes} minute(s).`;
 }
 
 export async function sendOtp({ phoneNumber, purpose, userId = null }) {

@@ -27,7 +27,7 @@ export const env = {
     "http://localhost:8080",
   ]),
   trustProxy: readNumber("TRUST_PROXY", 0),
-  mongoUri: readString("MONGODB_URI", "mongodb://127.0.0.1:27017/lekkerdeal-dev"),
+  mongoUri: readString("MONGODB_URI", "mongodb://127.0.0.1:27017/lekkedeal-dev"),
   allowSharedMongoDatabase: readString("ALLOW_SHARED_MONGODB_DATABASE", "") === "true",
   mongoDnsServers: readString("MONGODB_DNS_SERVERS", "1.1.1.1,8.8.8.8"),
   jwtSecret: readString("JWT_SECRET"),

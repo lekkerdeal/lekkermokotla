@@ -15,7 +15,7 @@ const COMMON_PASSWORDS = new Set([
   "welcome1",
   "iloveyou",
   "abc12345",
-  "lekkerdeal",
+  "lekkedeal",
   "southafrica",
   "capetown",
   "johannesburg",
@@ -52,7 +52,7 @@ async function assertNotPwnedPassword(password) {
     const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
       headers: {
         "Add-Padding": "true",
-        "User-Agent": "LekkerDeal password safety check",
+        "User-Agent": "LekkeDeal password safety check",
       },
       signal: AbortSignal.timeout(2500),
     });

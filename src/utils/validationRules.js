@@ -73,7 +73,7 @@ export function requireUsername(value) {
     "admin",
     "api",
     "support",
-    "lekkerdeal",
+    "lekkedeal",
     "root",
     "system",
   ]);

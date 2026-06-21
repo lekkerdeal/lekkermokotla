@@ -100,5 +100,5 @@ export const reactToComment = asyncHandler(async (req, res) => {
 });
 
 function publicAuthorName(user) {
-  return user.username || "LekkerDeal shopper";
+  return user.username || "LekkeDeal shopper";
 }

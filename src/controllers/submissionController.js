@@ -12,7 +12,7 @@ import {
 } from "../utils/validationRules.js";
 
 const DATA_ACCESS_CONSENT_TEXT =
-  "I confirm that I am authorised to request LekkerDeal to access, monitor, index and display publicly available offer information from this store website for deal discovery and referral purposes.";
+  "I confirm that I am authorised to request LekkeDeal to access, monitor, index and display publicly available offer information from this store website for deal discovery and referral purposes.";
 
 export const createDealReport = asyncHandler(async (req, res) => {
   const report = await DealReport.create({
@@ -111,7 +111,7 @@ export const createRetailerCollaborationRequest = asyncHandler(
 );
 
 function publicAuthorName(user) {
-  return user.username || "LekkerDeal shopper";
+  return user.username || "LekkeDeal shopper";
 }
 
 function wordCount(value) {

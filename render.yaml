@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: lekkerdeal-api
+    name: lekkedeal-api
     runtime: node
     plan: free
     buildCommand: npm ci

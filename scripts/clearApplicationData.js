@@ -29,10 +29,10 @@ try {
   console.log(`Connected to database: ${mongoose.connection.name}`);
   if (
     !allowSharedDatabase &&
-    !mongoose.connection.name.toLowerCase().includes("lekkerdeal")
+    !mongoose.connection.name.toLowerCase().includes("lekkedeal")
   ) {
     throw new Error(
-      `Refusing to clear non-LekkerDeal database "${mongoose.connection.name}".`,
+      `Refusing to clear non-LekkeDeal database "${mongoose.connection.name}".`,
     );
   }
 

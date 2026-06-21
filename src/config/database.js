@@ -4,7 +4,7 @@ import { env } from "./environment.js";
 
 export async function connectDatabase() {
   mongoose.set("strictQuery", true);
-  assertLekkerDealDatabase();
+  assertLekkeDealDatabase();
   if (env.mongoUri.startsWith("mongodb+srv://") && env.mongoDnsServers) {
     dns.setServers(
       env.mongoDnsServers
@@ -19,17 +19,17 @@ export async function connectDatabase() {
   return mongoose.connection;
 }
 
-function assertLekkerDealDatabase() {
+function assertLekkeDealDatabase() {
   const databaseName = getDatabaseName(env.mongoUri);
   if (
     env.allowSharedMongoDatabase ||
-    databaseName.toLowerCase().includes("lekkerdeal")
+    databaseName.toLowerCase().includes("lekkedeal")
   ) {
     return;
   }
 
   throw new Error(
-    `Refusing to start LekkerDeal with Mongo database "${databaseName}". Databases outside LekkerDeal belong to their own apps.`,
+    `Refusing to start LekkeDeal with Mongo database "${databaseName}". Databases outside LekkeDeal belong to their own apps.`,
   );
 }
 

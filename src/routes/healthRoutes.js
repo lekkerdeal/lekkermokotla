@@ -6,7 +6,7 @@ healthRoutes.get("/", (req, res) => {
   res.json({
     ok: true,
     data: {
-      service: "lekkerdeal-api",
+      service: "lekkedeal-api",
       uptime: process.uptime(),
     },
   });
