@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: lekkerdeal-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: API_BODY_LIMIT
+        value: 1mb
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: OTP_CODE_LENGTH
+        value: "6"
+      - key: OTP_EXPIRES_IN_MINUTES
+        value: "5"
+      - key: PASSWORD_RESET_OTP_EXPIRES_IN_MINUTES
+        value: "5"
+      - key: ACCOUNT_DELETION_OTP_EXPIRES_IN_MINUTES
+        value: "5"
+      - key: OTP_RESEND_COOLDOWN_SECONDS
+        value: "300"
+      - key: OTP_MAX_ATTEMPTS
+        value: "5"
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SMS_APIKEY
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false

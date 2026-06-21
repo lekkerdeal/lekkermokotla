@@ -1,0 +1,33 @@
+export function toUserDataTransferObject({
+  id,
+  username,
+  displayName,
+  email,
+  phoneNumber,
+  phoneVerified,
+  province,
+  city,
+  alertPreferences,
+  roles,
+  marketingConsentAt,
+  popiaConsentAt,
+  createdAt,
+  updatedAt,
+}) {
+  return {
+    id,
+    username,
+    displayName,
+    email,
+    phoneNumber,
+    phoneVerified: phoneVerified === true,
+    province,
+    city,
+    alertPreferences,
+    roles,
+    marketingConsentAt,
+    popiaConsentAt,
+    createdAt,
+    updatedAt,
+  };
+}
