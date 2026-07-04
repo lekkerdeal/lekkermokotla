@@ -61,6 +61,10 @@ export const env = {
     "VEHICLE_TRACKER_AFFILIATE_SHORTCODE",
     "JMAFFSite26716",
   ),
+  vehicleTrackerOptInUrl: readString(
+    "VEHICLE_TRACKER_OPTIN_URL",
+    "https://lekkedeal.co.za/",
+  ),
   vehicleTrackerDailyCap: readNumber("VEHICLE_TRACKER_DAILY_CAP", 10),
 };
 

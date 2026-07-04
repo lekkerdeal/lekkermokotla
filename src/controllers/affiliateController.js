@@ -1,4 +1,5 @@
 import { submitVehicleTrackerLead } from "../services/vehicleTrackerService.js";
+import { env } from "../config/environment.js";
 import { AppError } from "../utils/applicationError.js";
 import { asyncHandler } from "../utils/asynchronousRouteHandler.js";
 import { requirePhoneNumber, requireString } from "../utils/validationRules.js";
@@ -18,7 +19,7 @@ export const createVehicleTrackerLead = asyncHandler(async (req, res) => {
     firstName,
     lastName,
     phoneNumber,
-    optInUrl: publicOptInUrl(req),
+    optInUrl: validatedOptInUrl(),
   });
   res.status(201).json({ ok: true, data: { submitted: true, leadId: result.leadId } });
 });
@@ -35,7 +36,16 @@ function requirePersonName(value, field, label) {
   return name;
 }
 
-function publicOptInUrl(req) {
-  const origin = req.get("origin");
-  return origin && /^https?:\/\//i.test(origin) ? `${origin}/#vehicle-tracker` : "https://lekkedeal.co.za/#vehicle-tracker";
+function validatedOptInUrl() {
+  try {
+    const url = new URL(env.vehicleTrackerOptInUrl);
+    if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error("invalid protocol");
+    url.hash = "";
+    return url.toString();
+  } catch (error) {
+    throw new AppError("The vehicle tracker consent URL is not configured correctly.", {
+      statusCode: 500,
+      code: "VEHICLE_TRACKER_OPTIN_URL_INVALID",
+    });
+  }
 }
