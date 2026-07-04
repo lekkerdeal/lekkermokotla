@@ -9,9 +9,11 @@ export async function submitVehicleTrackerLead({ firstName, lastName, phoneNumbe
   await reserveDailyCapacity(day);
 
   try {
+    const submissionUrl = new URL(env.vehicleTrackerEndpoint);
+    submissionUrl.searchParams.set("campid", env.vehicleTrackerCampaignId);
+    submissionUrl.searchParams.set("sid", env.vehicleTrackerSid);
+    submissionUrl.searchParams.set("returnjson", "yes");
     const body = new URLSearchParams({
-      campid: env.vehicleTrackerCampaignId,
-      returnjson: "yes",
       firstname: firstName,
       lastname: lastName,
       phone1: phoneNumber,
@@ -25,7 +27,7 @@ export async function submitVehicleTrackerLead({ firstName, lastName, phoneNumbe
       affiliateshortcode: env.vehicleTrackerAffiliateShortcode,
       channel: "JMAff",
     });
-    const response = await fetch(env.vehicleTrackerEndpoint, {
+    const response = await fetch(submissionUrl, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body,
@@ -34,6 +36,11 @@ export async function submitVehicleTrackerLead({ firstName, lastName, phoneNumbe
     const payload = await response.json().catch(() => null);
     if (!response.ok || payload?.code !== 1) {
       await releaseDailyCapacity(day);
+      console.warn("Vehicle Tracker lead rejected", {
+        code: payload?.code,
+        response: payload?.response,
+        info: payload?.info,
+      });
       throw new AppError(providerMessage(payload), {
         statusCode: providerStatus(payload),
         code: providerCode(payload),
@@ -110,6 +117,25 @@ function providerStatus(payload) {
 function providerMessage(payload) {
   if (payload?.code === -2) return "This phone number has already requested a quote recently.";
   if (payload?.code === -4) return "The vehicle tracker quote limit has been reached. Please try again later.";
-  if (payload?.code === -5) return "The quote details could not be accepted. Please check them and try again.";
+  if (payload?.code === -5) {
+    const reason = safeProviderReason(payload);
+    return reason
+      ? `The quote details could not be accepted: ${reason}`
+      : "The quote details could not be accepted. Please check them and try again.";
+  }
   return "The vehicle tracking partner could not accept the request. Please try again later.";
+}
+
+function safeProviderReason(payload) {
+  const values = [payload?.response];
+  if (typeof payload?.info === "string") values.push(payload.info);
+  if (Array.isArray(payload?.info)) values.push(...payload.info);
+  if (payload?.info && typeof payload.info === "object" && !Array.isArray(payload.info)) {
+    values.push(...Object.entries(payload.info).map(([field, value]) => `${field}: ${value}`));
+  }
+  return values
+    .map((value) => String(value ?? "").replace(/[^A-Za-z0-9 ._:'()-]/g, " ").replace(/\s+/g, " ").trim())
+    .filter((value) => value && value.toLowerCase() !== "validation error")
+    .join("; ")
+    .slice(0, 220);
 }
