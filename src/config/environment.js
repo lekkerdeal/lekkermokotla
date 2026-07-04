@@ -50,6 +50,18 @@ export const env = {
   ),
   otpResendCooldownSeconds: readNumber("OTP_RESEND_COOLDOWN_SECONDS", 300),
   otpMaxAttempts: readNumber("OTP_MAX_ATTEMPTS", 5),
+  vehicleTrackerEndpoint: readString(
+    "VEHICLE_TRACKER_ENDPOINT",
+    "https://returnxdigital.leadbyte.co.uk/api/submit.php",
+  ),
+  vehicleTrackerCampaignId: readString("VEHICLE_TRACKER_CAMPAIGN_ID", "VEHICLE-TRACKING"),
+  vehicleTrackerSid: readString("VEHICLE_TRACKER_SID", "26900"),
+  vehicleTrackerOfferId: readString("VEHICLE_TRACKER_OFFER_ID", "1523"),
+  vehicleTrackerAffiliateShortcode: readString(
+    "VEHICLE_TRACKER_AFFILIATE_SHORTCODE",
+    "JMAFFSite26716",
+  ),
+  vehicleTrackerDailyCap: readNumber("VEHICLE_TRACKER_DAILY_CAP", 10),
 };
 
 function readList(name, fallback = []) {

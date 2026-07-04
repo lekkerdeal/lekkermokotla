@@ -6,6 +6,7 @@ import { healthRoutes } from "./healthRoutes.js";
 import { reviewRoutes } from "./reviewRoutes.js";
 import { savedDealRoutes } from "./savedDealRoutes.js";
 import { submissionRoutes } from "./submissionRoutes.js";
+import { affiliateRoutes } from "./affiliateRoutes.js";
 
 export const apiRoutes = Router();
 
@@ -16,3 +17,4 @@ apiRoutes.use("/saved-deals", savedDealRoutes);
 apiRoutes.use("/submissions", submissionRoutes);
 apiRoutes.use("/reviews", reviewRoutes);
 apiRoutes.use("/comments", commentRoutes);
+apiRoutes.use("/affiliates", affiliateRoutes);

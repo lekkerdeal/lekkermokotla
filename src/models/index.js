@@ -7,3 +7,4 @@ export { DealReport } from "./DealReport.js";
 export { RetailerCollaborationRequest } from "./RetailerCollaborationRequest.js";
 export { ContactMessage } from "./ContactMessage.js";
 export { SecurityEvent } from "./SecurityEvent.js";
+export { AffiliateCampaignDailyCap } from "./AffiliateCampaignDailyCap.js";
